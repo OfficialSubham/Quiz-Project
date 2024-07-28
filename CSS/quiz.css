@@ -35,7 +35,7 @@
 }
 
 .question-and-option .question {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
     width: 100%;
     height: 50px;
@@ -71,10 +71,14 @@
     background-color: #75abe1;
 }
 
-.quiz-container .page-changer, .quiz-container .both-page-change {
+.quiz-container .page-changer, .quiz-container .both-page-change, .quiz-container .score-page {
     height: calc(100% - 390px);
     padding: 10px;
     margin-top: 10px;
+}
+
+.quiz-container .score-page{
+    justify-content: flex-start;
 }
 
 .quiz-container .page-changer {
@@ -86,7 +90,7 @@
     justify-content: space-between;
 }
 
-.page-changer button, .both-page-change button {
+.page-changer button, .both-page-change button, .score-page button {
     height: 40px;
     width: 65px;
     border-radius: 5px;
@@ -98,8 +102,11 @@
     transition: all 0.15s;
 }
 
-.page-changer button:hover, .both-page-change button:hover {
+.page-changer button:hover, .both-page-change button:hover, .score-page button:hover {
     box-shadow: 1px 1px 4px 1px #000;
     background-color: #75abe1;
 }
 
+.quiz-container .result {
+    height: 350px;
+}

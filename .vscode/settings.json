@@ -1,0 +1,9 @@
+{
+    "editor.guides.bracketPairs": "active",
+    "editor.guides.highlightActiveIndentation": "always",
+    "workbench.tree.renderIndentGuides": "always",
+    "editor.renderWhitespace": "boundary",
+    "editor.renderControlCharacters": true,
+    "editor.guides.indentation": "true",
+
+}

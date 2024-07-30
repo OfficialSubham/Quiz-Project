@@ -18,3 +18,7 @@
 .column {
     flex-direction: column;
 }
+
+.block {
+    cursor: not-allowed;
+}

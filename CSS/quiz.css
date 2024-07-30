@@ -5,6 +5,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: Roboto;
+    overflow: hidden;
 }
 
 .container {
@@ -62,12 +63,14 @@
     background-color: #4b749f;
     border: none;
     border-radius: 20px;
-    transition: all 0.15s;
+    transition: all 0.15s
+}
+
+.options .pointer{
     cursor: pointer;
 }
 
 .option button:hover {
-    box-shadow: 1px 1px 4px 1px #000;
     background-color: #75abe1;
 }
 
@@ -103,10 +106,19 @@
 }
 
 .page-changer button:hover, .both-page-change button:hover, .score-page button:hover {
-    box-shadow: 1px 1px 4px 1px #000;
     background-color: #75abe1;
 }
 
 .quiz-container .result {
     height: 350px;
+}
+
+.correct-answer {
+    border: 2px solid rgb(81, 233, 81);
+    border-radius: 22px;
+}
+
+.wrong-answer {
+    border: 2px solid rgb(255, 22, 22);
+    border-radius: 22px;
 }

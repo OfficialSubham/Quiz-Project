@@ -1,4 +1,4 @@
-const answerArray = ["Mars", "William Shakespeare", "canberra", "Oxygen"];
+const answerArray = ["Mars", "William Shakespeare", "Canberra", "Oxygen"];
 
 export function answerChecker(choosenOption) {
     let correctAns;
@@ -55,4 +55,16 @@ export function correctOrNot() {
                 })
             }
         })
+}
+
+export function buttonClick() {
+    document.querySelectorAll(".option").forEach((button) => {
+        const answer = button.dataset.answer;
+        button.addEventListener('click', () => {
+            answerChecker(answer);
+            correctOrNot();
+            console.log(answer);
+            console.log("Hello");
+        })
+    })
 }

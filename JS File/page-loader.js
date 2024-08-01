@@ -214,7 +214,7 @@ export function pageLoader() {
                         
                 <div class="both-page-change flex align-center">
                     <a href="../Page-${Number(question.page) - 1}/quiz.html"><button class="next-button">Previous</button></a>
-                    <a href="../Page-3/quiz.html"><button class="next-button">NEXT</button></a>
+                    <a href="../Score%20Page/score.html"><button class="next-button">NEXT</button></a>
                 </div>
 
             `

@@ -1,25 +1,23 @@
 import { saveData } from "./page-loader.js";
 
 const answerArray = ["Mars", "William Shakespeare", "Canberra", "Oxygen"];
-const marks = [];
+export const marks = JSON.parse(localStorage.getItem("marks")) || [];
 export function answerChecker(choosenOption) {
     let correctAns;
     answerArray.forEach((answer) => {
         if(answer == choosenOption) {
             correctAns = 1
+    
         }
     })
     if(!correctAns) {
         console.log("Wrong Answer");
         noRedo()
-        marks.push(1)
     }
     else{
         console.log("Correct Answer");
         noRedo()
-        marks.push(0);
     }
-
     return correctAns;
 }
 
@@ -50,7 +48,6 @@ export function correctOrNot() {
                         let dataAnswer = button.dataset.answer;
                         if(dataAnswer == answer) {
                             button.classList.add("correct-answer")
-                       
                         }
                     })
             }
@@ -76,10 +73,13 @@ export function buttonClick() {
     document.querySelectorAll(".option").forEach((button) => {
         const answer = button.dataset.answer;
         button.addEventListener('click', () => {
-            answerChecker(answer);
+            let score = answerChecker(answer);
             correctOrNot();
             console.log(answer);
-            console.log("Hello");
+            if(score == 1) {
+                marks.push(1);
+                saveMarks();
+            }
         })
     })
 }
@@ -104,5 +104,9 @@ export const PageHtmlSaver = {
     page2: "SecondPage",
     page3: "ThirdPage",
     page4: "FourthPage"
+}
+
+export function saveMarks() {
+    localStorage.setItem("marks", JSON.stringify(marks));
 }
 

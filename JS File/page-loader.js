@@ -1,4 +1,4 @@
-import { buttonClick } from "./functions.js";
+import { buttonClick, wherToSave, PageHtmlSaver } from "./functions.js";
 
 const QuestionArray = [
     {
@@ -44,7 +44,6 @@ const QuestionArray = [
 ]
 
 export function pageLoader() {
-    buttonClick()
     let html = ``;
     let pageNumber;
     document.querySelectorAll(".container")
@@ -56,7 +55,7 @@ export function pageLoader() {
 
                 let question = QuestionArray[0]
 
-                html = `
+                html = returnData(pageNumber) || `
 
                     <div class="quiz-container flex column">
                         <div class="header">
@@ -93,12 +92,13 @@ export function pageLoader() {
                 </div>
 
                 `
+                saveData(wherToSave(pageNumber), html);
             }
     
         else if (pageNumber == 2){
 
             let question = QuestionArray[1]
-            html = `
+            html = returnData(pageNumber) ||  `
                     <div class="quiz-container flex column">
                         <div class="header">
                             SubhamOfficial
@@ -133,14 +133,13 @@ export function pageLoader() {
                     <a href="../Page-1/quiz.html"><button class="next-button">Previous</button></a>
                     <a href="../Page-3/quiz.html"><button class="next-button">NEXT</button></a>
                 </div>
-
-
-            
-                `;
+                `
+                saveData(wherToSave(pageNumber), html);
+                ;
         }
         else if (pageNumber == 3){
             let question = QuestionArray[2]
-            html = `
+            html = returnData(pageNumber) || `
             
                     <div class="quiz-container flex column">
                         <div class="header">
@@ -176,13 +175,13 @@ export function pageLoader() {
                     <a href="../Page-2/quiz.html"><button class="next-button">Previous</button></a>
                     <a href="../Page-4/quiz.html"><button class="next-button">NEXT</button></a>
                 </div>
-
-
-            `;
+            `
+            saveData(wherToSave(pageNumber), html);
+            ;
         }
         else if(pageNumber == 4) {
             let question = QuestionArray[3]
-            html = `
+            html = returnData(pageNumber) || `
                                 <div class="quiz-container flex column">
                         <div class="header">
                             SubhamOfficial
@@ -218,7 +217,9 @@ export function pageLoader() {
                     <a href="../Page-3/quiz.html"><button class="next-button">NEXT</button></a>
                 </div>
 
-            `;
+            `
+            saveData(wherToSave(pageNumber), html);
+            ;
         } 
     
 
@@ -226,5 +227,18 @@ export function pageLoader() {
         .innerHTML = html;
         buttonClick();
 }
+
+
+
+export function saveData(dataSaver, html) {
+    localStorage.setItem(dataSaver, JSON.stringify(html));
+}
+
+function returnData(pageNumber) {
+    return JSON.parse(localStorage.getItem(wherToSave(pageNumber)))
+}
+
+// let data = JSON.parse(localStorage.getItem("FirstPage"));
+// console.log(data);
 
 

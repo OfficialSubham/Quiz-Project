@@ -1,5 +1,7 @@
-const answerArray = ["Mars", "William Shakespeare", "Canberra", "Oxygen"];
+import { saveData } from "./page-loader.js";
 
+const answerArray = ["Mars", "William Shakespeare", "Canberra", "Oxygen"];
+const marks = [];
 export function answerChecker(choosenOption) {
     let correctAns;
     answerArray.forEach((answer) => {
@@ -10,13 +12,12 @@ export function answerChecker(choosenOption) {
     if(!correctAns) {
         console.log("Wrong Answer");
         noRedo()
-        
+        marks.push(1)
     }
     else{
         console.log("Correct Answer");
         noRedo()
-
-       
+        marks.push(0);
     }
 
     return correctAns;
@@ -32,6 +33,13 @@ function noRedo() {
 }
 
 export function correctOrNot() {
+    let pageNumber;
+    document.querySelectorAll(".container")
+        .forEach((page) => {
+            pageNumber = page.dataset.pageNum;
+        })
+        console.log(pageNumber);
+
     document.querySelectorAll(".option")
         .forEach((Answer) => {
             let answer = Answer.dataset.answer;
@@ -42,6 +50,7 @@ export function correctOrNot() {
                         let dataAnswer = button.dataset.answer;
                         if(dataAnswer == answer) {
                             button.classList.add("correct-answer")
+                       
                         }
                     })
             }
@@ -54,7 +63,13 @@ export function correctOrNot() {
                     }
                 })
             }
+
+            let html = document.querySelector(".container").innerHTML;
+            saveData(wherToSave(pageNumber), html)
         })
+
+        let data = JSON.parse(localStorage.getItem("FirstPage"));
+        console.log(data);
 }
 
 export function buttonClick() {
@@ -68,3 +83,26 @@ export function buttonClick() {
         })
     })
 }
+
+export function wherToSave(pageNumber) {
+    if(pageNumber == 1) {
+        return PageHtmlSaver.page1;
+    }
+    else if(pageNumber == 2) {
+        return PageHtmlSaver.page2;
+    }
+    else if(pageNumber == 3) {
+        return PageHtmlSaver.page3;
+    }
+    else if(pageNumber == 4) {
+        return PageHtmlSaver.page4;
+    }
+}
+
+export const PageHtmlSaver = {
+    page1: "FirstPage",
+    page2: "SecondPage",
+    page3: "ThirdPage",
+    page4: "FourthPage"
+}
+
